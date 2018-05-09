@@ -1,0 +1,8 @@
+name: ObamaCare
+version: 0
+author: Andrew121410
+main: ObamaCare.ObamaCare.ObamaCare.Main
+
+commands:
+    obamacare:
+    testing:
