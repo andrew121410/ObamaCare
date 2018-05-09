@@ -1,8 +1,7 @@
 name: ObamaCare
-version: 0
+version: 0.1
 author: Andrew121410
 main: ObamaCare.ObamaCare.ObamaCare.Main
 
 commands:
     obamacare:
-    testing:

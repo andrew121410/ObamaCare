@@ -26,7 +26,7 @@ public class Main extends JavaPlugin implements Listener {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		  {
 			  Player p = (Player) sender;
-		       
+		       //START
 			  if (cmd.getName().equalsIgnoreCase("obamacare")) {
 				  if (args.length == 0) {
 			      if (p.hasPermission("obamacare.obamacare.command")){  //Permission
@@ -52,7 +52,7 @@ public class Main extends JavaPlugin implements Listener {
 							  return true;
 						  }else {
 							  p.sendMessage(Translate.chat("&4You Don't Have Permission To Use This Command."));
-							  //END of heal
+							  //END of Heal
 						  }
 						      //Version
 						  }else if (args.length == 1) {
@@ -66,7 +66,7 @@ public class Main extends JavaPlugin implements Listener {
 								  return true;
 							  }else {
 								  p.sendMessage(Translate.chat("&4You Don't Have Permission To Use This Command."));
-								  //END of version
+								  //END of Version
 							  }
 							  //Info
 							  }else if (args.length == 1) {
@@ -83,7 +83,7 @@ public class Main extends JavaPlugin implements Listener {
 									  return true;
 						}else {
 							p.sendMessage(Translate.chat("&4You Don't Have Permission To Use This Command."));
-								    	  //END of info
+								    	  //END of Info
 						}
 								      //Reload
 						}else if (args.length == 1) {
@@ -93,7 +93,7 @@ public class Main extends JavaPlugin implements Listener {
 							return true;
 						}else {
 							p.sendMessage(Translate.chat("&4You Don't Have Permission To Use This Command."));
-							//END of reload
+							//END of Reload
 						}
 					      //Permissions
 			}else if (args.length == 1) {
@@ -112,7 +112,7 @@ public class Main extends JavaPlugin implements Listener {
 				return true;
 			}else {
 				p.sendMessage(Translate.chat("&4You Don't Have Permission To Use This Command."));
-				//END of permissions
+				//End of Permissions
 			}
 			}
 			}
