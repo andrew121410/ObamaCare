@@ -4,29 +4,68 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-
+import java.util.logging.Logger;
 import Translate.Translate;
+import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 
 public class Main extends JavaPlugin implements Listener {
 
     public static Main instance;
-    
+    private static final Logger log = Logger.getLogger("Minecraft");
+    private static Economy econ = null;
+    private static Permission perms = null;
+    private static Chat chat = null;
+    //START OF ONENABLE.
 	@Override
 	public void onEnable() {
+        if (!setupEconomy() ) {
+            log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+        setupPermissions();
+        setupChat();
 		getServer().getConsoleSender().sendMessage("[ObamaCare] is now enabled.]");
-		
+		//END OF ONENABLE.
 	}
-	
+	//START OF ONDISABLE.
 	public void onDisable() {
 		getServer().getConsoleSender().sendMessage("[ObamaCare] is now disabled.]");
-		
+		//END OF ONDISABLE.
 	}
-	
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+	//START OF VAULT API.
+    private boolean setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return false;
+        }
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+            return false;
+        }
+        econ = rsp.getProvider();
+        return econ != null;
+    }
+    
+    private boolean setupChat() {
+        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        chat = rsp.getProvider();
+        return chat != null;
+    }
+    
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
+    }
+    //END OF VAULT API.
+            public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		  {
 			  Player p = (Player) sender;
-		       //START
+		       //START OF OBAMACARE.
 			  if (cmd.getName().equalsIgnoreCase("obamacare")) {
 				  if (args.length == 0) {
 			      if (p.hasPermission("obamacare.obamacare.command")){  //Permission
