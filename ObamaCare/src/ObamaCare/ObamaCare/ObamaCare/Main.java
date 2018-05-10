@@ -1,12 +1,16 @@
 package ObamaCare.ObamaCare.ObamaCare;
 
+import java.util.logging.Logger;
+
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import java.util.logging.Logger;
+
+import Events.Signs;
 import Translate.Translate;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -28,6 +32,7 @@ public class Main extends JavaPlugin implements Listener {
             return;
 	}
         setupPermissions();
+        Bukkit.getPluginManager().registerEvents(new Signs(this), this);
 		getServer().getConsoleSender().sendMessage("[ObamaCare] is now enabled.]");
 		//END OF ONENABLE.
 	}
