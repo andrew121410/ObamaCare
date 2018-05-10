@@ -85,8 +85,15 @@ public class Main extends JavaPlugin implements Listener {
 				  }else if (args.length == 1) {
 						  if (args[0].equalsIgnoreCase("heal")) {
 						      if (p.hasPermission("obamacare.heal.command")){  //Permission
-						    	p.setHealth(20);
-								p.setFoodLevel(20);
+						    	  int price = 500;
+						    	  if (econ.hasAccount(p)) {
+						    	       econ.withdrawPlayer(p, price);
+						    	       p.sendMessage("You have bought something.");
+								    	p.setHealth(20);
+										p.setFoodLevel(20);
+						    	  } else {
+						    	       p.sendMessage("You do not have enough money!");
+						    	  }
 							  p.sendMessage(Translate.chat("[&bObamaCare&r] You are now healed."));
 							  return true;
 						  }else {
