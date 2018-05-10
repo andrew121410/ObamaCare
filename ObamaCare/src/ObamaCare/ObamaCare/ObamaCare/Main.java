@@ -26,9 +26,8 @@ public class Main extends JavaPlugin implements Listener {
             log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
             return;
-        }
+	}
         setupPermissions();
-        setupChat();
 		getServer().getConsoleSender().sendMessage("[ObamaCare] is now enabled.]");
 		//END OF ONENABLE.
 	}
@@ -48,12 +47,6 @@ public class Main extends JavaPlugin implements Listener {
         }
         econ = rsp.getProvider();
         return econ != null;
-    }
-    
-    private boolean setupChat() {
-        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
-        chat = rsp.getProvider();
-        return chat != null;
     }
     
     private boolean setupPermissions() {
@@ -88,13 +81,13 @@ public class Main extends JavaPlugin implements Listener {
 						    	  int price = 500;
 						    	  if (econ.hasAccount(p)) {
 						    	       econ.withdrawPlayer(p, price);
-						    	       p.sendMessage("You have bought something.");
+						    	       p.sendMessage(Translate.chat("&a500$ has been taken from your account."));
 								    	p.setHealth(20);
 										p.setFoodLevel(20);
+										  p.sendMessage(Translate.chat("[&bObamaCare&r] You are now healed."));
 						    	  } else {
-						    	       p.sendMessage("You do not have enough money!");
+						    	       p.sendMessage("&cYou do not have enough money!");
 						    	  }
-							  p.sendMessage(Translate.chat("[&bObamaCare&r] You are now healed."));
 							  return true;
 						  }else {
 							  p.sendMessage(Translate.chat("&4You Don't Have Permission To Use This Command."));
@@ -124,7 +117,7 @@ public class Main extends JavaPlugin implements Listener {
 								    	  p.sendMessage(Translate.chat(""));
 								    	  p.sendMessage(Translate.chat("&9This plugin is when you are about to die"));
 								    	  p.sendMessage(Translate.chat("&9You can type /obamacare heal you will get healed and charged."));
-								    	  p.sendMessage(Translate.chat("&9300$ in minecraft money using vault plugin."));
+								    	  p.sendMessage(Translate.chat("&9500$ in minecraft money using vault plugin."));
 								    	  p.sendMessage(Translate.chat("&4&lNOTE THAT THIS PLUGIN IS NOT FINSHED YET...."));
 									  return true;
 						}else {
@@ -169,5 +162,16 @@ public class Main extends JavaPlugin implements Listener {
 			  }
 		  }
 		return false;
-	}
+            }
+            public static Economy getEconomy() {
+                return econ;
+            }
+            
+            public static Permission getPermissions() {
+                return perms;
+            }
+            
+            public static Chat getChat() {
+                return chat;
+            }
 }
